@@ -1,7 +1,7 @@
-
 import { app, BrowserWindow, nativeTheme, ipcMain } from 'electron';
 import path from 'path';
 import os from 'os';
+import './ipcMain';
 
 // needed in case process is undefined under Linux
 const platform = process.platform || os.platform();
@@ -53,20 +53,20 @@ function createWindow() {
   ipcMain.handle('minimize-window', (event) => {
     // console.log('isMinimized : ', mainWindow.isMinimized())
     if (!mainWindow.isMinimized()) {
-      mainWindow.minimize()
+      mainWindow.minimize();
     }
-  })
+  });
   ipcMain.handle('toggle-maxmize-window', (event) => {
     if (mainWindow.isMaximized()) {
-      mainWindow.unmaximize()
+      mainWindow.unmaximize();
     } else {
-      mainWindow.maximize()
+      mainWindow.maximize();
     }
-  })
+  });
   ipcMain.handle('close-window', (event) => {
-    mainWindow = null
-    app.quit()
-  })
+    mainWindow = null;
+    app.quit();
+  });
 }
 
 app.whenReady().then(createWindow);
