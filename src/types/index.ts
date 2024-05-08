@@ -5,5 +5,6 @@ export class ElectronPreload {
   closeWindow = () => ir.invoke('close-window');
   minimizeWindow = () => ir.invoke('minimize-window');
   getDirPath = () => ir.invoke('getDirPath');
-  getCommonCode = () => ir.invoke('getCommonCode');
+  getCommonCode = (codeNumber: number) =>
+    ir.invoke('getCommonCode', codeNumber);
 }

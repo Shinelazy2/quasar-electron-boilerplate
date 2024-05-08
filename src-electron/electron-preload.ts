@@ -1,4 +1,4 @@
 import { ElectronPreload } from '@/types';
-const api = new ElectronPreload
-import { contextBridge } from 'electron'
-contextBridge.exposeInMainWorld('api', api)
+import { contextBridge } from 'electron';
+const api = new ElectronPreload();
+contextBridge.exposeInMainWorld('api', api);

@@ -5,9 +5,10 @@ const medium = ref<boolean>(false)
 const sourceDirPath = ref<string>('')
 const targetDirPath = ref<string>('')
 
-onMounted(() => {
+onMounted(async () => {
   // get Settings
-
+  const test = await window.api.getCommonCode(1000)
+  console.log('🚀 ~ onMounted ~ test:', test)
 })
 
 const saveDirPath = async (type: string) => {
