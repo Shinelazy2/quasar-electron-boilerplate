@@ -7,13 +7,17 @@ const targetDirPath = ref<string>('')
 
 onMounted(async () => {
   // get Settings
-  const test = await window.api.getCommonCode(1000)
-  console.log('🚀 ~ onMounted ~ test:', test)
+  const pathCommonCode = await window.api.getCommonCode(1000)
+  console.log('🚀 ~ onMounted ~ pathCommonCode:', pathCommonCode)
+
 })
 
 const saveDirPath = async (type: string) => {
   //
+  console.log('🚀 ~ saveDirPath ~ window.api:', window.api)
+
   const path = await window.api.getDirPath()
+
 
   if (type === 'source') {
     sourceDirPath.value = path

@@ -2,10 +2,11 @@
   "extends": "@quasar/app-vite/tsconfig-preset",
   "compilerOptions": {
     "baseUrl": ".",
+    // "allowJs": true,
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-    }
-  }
+      "@/*": ["src/*"]
+    },
+    "typeRoots": ["./node_modules/@types"]
+  },
+  "exclude": ["dist", ".quasar", "node_modules"]
 }
