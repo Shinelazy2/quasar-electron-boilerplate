@@ -9,16 +9,19 @@
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,css,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev -m electron -d"
+    "dev": "quasar dev -m electron -d",
+    "build": "quasar build -m electron"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "aa-sqlite": "^1.0.29",
     "axios": "^1.2.1",
+    "dayjs": "^1.11.11",
     "dotenv": "^16.4.5",
+    "node-pre-gyp": "^0.17.0",
     "pinia": "^2.0.11",
     "quasar": "^2.6.0",
-    "sqlite3": "^5.1.7",
+    "sqlite3": "5.1.6",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"
   },
@@ -30,6 +33,8 @@
     "@vue/devtools": "^6.5.0",
     "autoprefixer": "^10.4.2",
     "electron": "^25.2.0",
+    "electron-builder": "^24.13.3",
+    "electron-packager": "^17.1.2",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^9.0.0",

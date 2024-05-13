@@ -177,7 +177,7 @@ module.exports = configure(function (/* ctx */) {
 
       inspectPort: 5858,
 
-      bundler: 'packager', // 'packager' or 'builder'
+      bundler: 'builder', // 'packager' or 'builder'
 
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
@@ -194,6 +194,20 @@ module.exports = configure(function (/* ctx */) {
         // https://www.electron.build/configuration/configuration
 
         appId: 'move-picture',
+        nsis: {
+          oneClick: false,
+          perMachine: false,
+          allowToChangeInstallationDirectory: true,
+        },
+        win: {
+          icon: 'icons/icon.256x256.ico',
+        },
+        extraFiles: [
+          {
+            from: './picture_db.sqlite.build',
+            to: './picture_db.sqlite',
+          },
+        ],
       },
     },
 

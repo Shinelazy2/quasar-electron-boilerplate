@@ -3,6 +3,12 @@
     <q-header elevated>
       <q-bar class="q-electron-drag row items-center">
         <q-btn @click="openSettingModal()" dense flat icon="settings" color="gray" />
+        <!-- <div> -->
+        <q-btn-toggle v-model="store.isToggle" toggle-color="green" :options="[
+          { label: 'Start', value: 'start' },
+          { label: 'Stop', value: 'stop' },
+        ]" @click="switchToggle()" />
+
         <q-space />
 
         <q-btn @click="minimize()" dense flat icon="lens" color="yellow" />
@@ -22,12 +28,26 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import SettingModal from '@/components/SettingModal.vue';
+import { useCounterStore } from '@/stores/example-store';
 // const leftDrawerOpen = ref(false)
 const drawer = ref(false)
 const isOpenSettingModal = ref(false)
+const store = useCounterStore()
 // function toggleLeftDrawer() {
 //   leftDrawerOpen.value = !leftDrawerOpen.value
 // }
+
+const switchToggle = () => {
+  console.log('switched Toggle', store.isToggle)
+  if (store.isToggle === 'start') {
+    store.startTransferImage()
+  }
+
+  if (store.isToggle === 'stop') {
+    //
+    store.stopTransferImage()
+  }
+}
 
 const minimize = (): void => {
   if (window.api.minimizeWindow) {
@@ -47,5 +67,7 @@ const close = (): void => {
 
 const openSettingModal = (): void => {
   isOpenSettingModal.value = true
+  store.isToggle = 'stop'
+  store.stopTransferImage()
 }
 </script>
