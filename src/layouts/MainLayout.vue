@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import SettingModal from '@/components/SettingModal.vue';
 // const leftDrawerOpen = ref(false)
 const drawer = ref(false)
@@ -28,6 +28,14 @@ const isOpenSettingModal = ref(false)
 // function toggleLeftDrawer() {
 //   leftDrawerOpen.value = !leftDrawerOpen.value
 // }
+
+onMounted(async () => {
+  const test = await window.api.typeormTest()
+  console.log('🚀 ~ onMounted ~ test:', test)
+
+  const asd = await window.api.typeormInsertTest('asd')
+  console.log('🚀 ~ onMounted ~ asd:', asd)
+})
 
 const minimize = (): void => {
   if (window.api.minimizeWindow) {

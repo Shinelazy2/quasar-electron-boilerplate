@@ -1,8 +1,11 @@
+import 'reflect-metadata';
 import { app, BrowserWindow, nativeTheme, ipcMain } from 'electron';
 import path from 'path';
 import os from 'os';
 import './ipcMain';
-
+import { DataSource } from 'typeorm';
+import { User } from '@/entity/user.entity';
+export let dataSource: DataSource;
 // needed in case process is undefined under Linux
 const platform = process.platform || os.platform();
 
@@ -17,6 +20,18 @@ try {
 let mainWindow: BrowserWindow | undefined | any;
 
 function createWindow() {
+  dataSource = new DataSource({
+    type: 'sqlite',
+    synchronize: true,
+    logging: true,
+    logger: 'simple-console',
+    database: __dirname + 'db.sqlite',
+    // entities: ['**/*.entity.{ts,js}'],
+    entities: [User],
+    migrations: ['./migrations/*.js'],
+  });
+  dataSource.initialize();
+
   /**
    * Initial window options
    */

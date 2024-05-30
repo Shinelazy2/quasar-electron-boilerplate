@@ -6,4 +6,7 @@ export class ElectronPreload {
   minimizeWindow = () => ir.invoke('minimize-window');
   getDirPath = () => ir.invoke('getDirPath');
   getCommonCode = () => ir.invoke('getCommonCode');
+  typeormTest = async () => await ir.invoke('typeormTest');
+  typeormInsertTest = async (content: string) =>
+    await ir.invoke('typeormInsertTest', content);
 }
