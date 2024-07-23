@@ -4,6 +4,7 @@ import {
   SaveDialogOptions,
   OpenDialogOptions,
 } from 'electron';
+import { TestRepository } from './test.repository';
 const sqlite = require('aa-sqlite');
 const path = require('path');
 
@@ -24,16 +25,10 @@ im.handle('getDirPath', async () => {
   return r.filePaths[0];
 });
 
-im.handle('getCommonCode', async (_, codeNumber: number) => {
+im.handle('getTest', async (_, codeNumber: number) => {
   try {
-    await sqlite.open(dbPath);
-    const query = `
-        SELECT COMMON_CD, DATA_1
-        FROM COMMON_CODE
-        WHERE GROUP_CD = ${codeNumber} AND USE_GB = 'Y'
-      `;
-    console.log('🚀 ~ file: ipcDB.ts:99 ~ im.handle ~ query:', query);
-    const data = await sqlite.get_all(query, []);
+    const getQuery = new TestRepository();
+    const data = getQuery.getTest();
     return data;
   } catch (error: unknown) {
     console.log('🚀 ~ im.handle ~ error:', error);

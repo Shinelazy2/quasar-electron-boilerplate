@@ -6,7 +6,16 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"],
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true
   },
   "exclude": ["dist", ".quasar", "node_modules"]
 }

@@ -7,8 +7,8 @@ const targetDirPath = ref<string>('')
 
 onMounted(async () => {
   // get Settings
-  const pathCommonCode = await window.api.getCommonCode(1000)
-  console.log('🚀 ~ onMounted ~ pathCommonCode:', pathCommonCode)
+  // const pathCommonCode = await window.api.getCommonCode(1000)
+  // console.log('🚀 ~ onMounted ~ pathCommonCode:', pathCommonCode)
 
 })
 

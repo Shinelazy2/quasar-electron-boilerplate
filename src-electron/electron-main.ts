@@ -2,6 +2,10 @@ import { app, BrowserWindow, nativeTheme, ipcMain } from 'electron';
 import path from 'path';
 import os from 'os';
 import './ipcMain';
+import { DataSource } from 'typeorm';
+import { TestEntity } from '@/entities/test.entity';
+import { CommonCodeEntity } from '@/entities/commoncode.entity';
+export let dataSource: DataSource; // Export the dataSource
 
 // needed in case process is undefined under Linux
 const platform = process.platform || os.platform();
@@ -16,7 +20,29 @@ try {
 
 let mainWindow: BrowserWindow | undefined | any;
 
-function createWindow() {
+async function createWindow() {
+  const url =
+    process.env.DATABASE_URL !== undefined ? process.env.DATABASE_URL : 'error';
+  const dbPath =
+    process.env.NODE_ENV === 'development' ? url : path.join(__dirname, url);
+  dataSource = new DataSource({
+    type: 'sqlite',
+    synchronize: true,
+    logging: 'all',
+    database: dbPath,
+    entities: [TestEntity, CommonCodeEntity],
+    // entities: [path.join(__dirname, '../../src/entity/*.entity.{ts,js}')],
+    // migrations: ['./migrations/*.js'],
+  });
+  await dataSource
+    .initialize()
+    .then(() => {
+      console.info('Data source has been initialized.');
+    })
+    .catch((error) => {
+      console.info('Error during Data Source initialization:', error);
+    });
+
   /**
    * Initial window options
    */
