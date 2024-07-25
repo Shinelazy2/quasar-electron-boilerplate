@@ -2,6 +2,7 @@
   <q-page class="row items-center justify-evenly">
     index
     <q-btn label="getTest" @click="getTest()"></q-btn>
+    <q-btn label="robotTest" @click="robotTest()"></q-btn>
   </q-page>
 </template>
 
@@ -12,6 +13,10 @@ import { ref } from 'vue';
 const getTest = async () => {
   const getQuery = await window.api.getTest()
   console.log('🚀 ~ getTest ~ getQuery:', getQuery)
+}
+const robotTest = async () => {
+  const getQuery = await window.api.robotTest()
+  console.log('🚀 ~ robotTest ~ getQuery:', getQuery)
 }
 
 </script>

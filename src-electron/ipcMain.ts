@@ -4,9 +4,11 @@ import {
   SaveDialogOptions,
   OpenDialogOptions,
 } from 'electron';
-import { TestRepository } from './test.repository';
+import { TestRepository } from './repositories/test.repository';
+import { clickAt, findImageOnScreen } from './functions/robots-test';
 const sqlite = require('aa-sqlite');
 const path = require('path');
+// import * as cv from 'opencv4nodejs';
 
 const dbPath =
   process.env.NODE_ENV === 'development'
@@ -33,4 +35,9 @@ im.handle('getTest', async (_, codeNumber: number) => {
   } catch (error: unknown) {
     console.log('🚀 ~ im.handle ~ error:', error);
   }
+});
+
+im.handle('robotTest', async (_) => {
+  findImageOnScreen();
+  // clickAt();
 });

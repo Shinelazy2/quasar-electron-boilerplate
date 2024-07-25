@@ -7,4 +7,5 @@ export class ElectronFunctions {
   minimizeWindow = () => ir.invoke('minimize-window');
   getDirPath = () => ir.invoke('getDirPath');
   getTest = () => ir.invoke('getTest');
+  robotTest = () => ir.invoke('robotTest');
 }

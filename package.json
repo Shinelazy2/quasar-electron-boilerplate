@@ -9,16 +9,22 @@
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,css,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev -m electron -d"
+    "dev": "quasar dev -m electron -d",
+    "e": "npx electron-rebuild -w opencv4nodejs"
   },
   "dependencies": {
+    "@jitsi/robotjs": "^0.6.13",
     "@quasar/extras": "^1.0.0",
+    "@techstark/opencv-js": "^4.9.0-release.3",
     "aa-sqlite": "^1.0.29",
     "axios": "^1.2.1",
     "dotenv": "^16.4.5",
+    "node-gyp": "^10.2.0",
     "pinia": "^2.0.11",
     "quasar": "^2.6.0",
     "reflect-metadata": "^0.2.2",
+    "robotjs": "^0.6.0",
+    "screenshot-desktop": "^1.15.0",
     "sqlite3": "^5.1.6",
     "typeorm": "^0.3.20",
     "vue": "^3.0.0",
@@ -42,5 +48,11 @@
     "node": "^18 || ^16 || ^14.19",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
+  },
+  "opencv4nodejs": {
+    "disableAutoBuild": 1,
+    "opencvIncludeDir": "C:\\tools\\opencv\\build\\include",
+    "opencvLibDir": "C:\\tools\\opencv\\build\\x64\\vc15\\lib",
+    "opencvBinDir": "C:\\tools\\opencv\\build\\x64\\vc15\\bin"
   }
 }
