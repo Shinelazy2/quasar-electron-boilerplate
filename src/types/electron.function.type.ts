@@ -8,4 +8,6 @@ export class ElectronFunctions {
   getDirPath = () => ir.invoke('getDirPath');
   getTest = () => ir.invoke('getTest');
   robotTest = () => ir.invoke('robotTest');
+  saveClipboardImage = () => ir.invoke('saveClipboardImage');
+  getImages = () => ir.invoke('getImages');
 }

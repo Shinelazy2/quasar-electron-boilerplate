@@ -5,6 +5,7 @@ import './ipcMain';
 import { DataSource } from 'typeorm';
 import { TestEntity } from '@/entities/test.entity';
 import { CommonCodeEntity } from '@/entities/commoncode.entity';
+import { ImageEntity } from '@/entities/image.entity';
 export let dataSource: DataSource; // Export the dataSource
 
 // needed in case process is undefined under Linux
@@ -30,7 +31,7 @@ async function createWindow() {
     synchronize: true,
     logging: 'all',
     database: dbPath,
-    entities: [TestEntity, CommonCodeEntity],
+    entities: [TestEntity, CommonCodeEntity, ImageEntity],
     // entities: [path.join(__dirname, '../../src/entity/*.entity.{ts,js}')],
     // migrations: ['./migrations/*.js'],
   });

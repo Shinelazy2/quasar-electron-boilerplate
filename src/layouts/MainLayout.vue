@@ -45,6 +45,7 @@ const close = (): void => {
   }
 }
 
+
 const openSettingModal = (): void => {
   isOpenSettingModal.value = true
 }

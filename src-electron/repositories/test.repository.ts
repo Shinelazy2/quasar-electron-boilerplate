@@ -9,10 +9,4 @@ export class TestRepository {
   constructor() {
     this.testRepository = dataSource.getRepository(TestEntity);
   }
-
-  async getTest() {
-    const query = this.testRepository.createQueryBuilder().select();
-
-    return await query.getMany();
-  }
 }

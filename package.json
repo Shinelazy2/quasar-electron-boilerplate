@@ -10,6 +10,7 @@
     "format": "prettier --write \"**/*.{js,ts,vue,css,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev -m electron -d",
+    "build": "quasar build -m electron -d",
     "e": "npx electron-rebuild -w opencv4nodejs"
   },
   "dependencies": {
@@ -38,6 +39,7 @@
     "@vue/devtools": "^6.5.0",
     "autoprefixer": "^10.4.2",
     "electron": "^25.2.0",
+    "electron-packager": "^17.1.2",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^9.0.0",
