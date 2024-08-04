@@ -1,22 +1,14 @@
-import {
-  ipcMain as im,
-  dialog,
-  SaveDialogOptions,
-  OpenDialogOptions,
-  clipboard,
-} from 'electron';
+import { ipcMain as im, dialog, SaveDialogOptions, OpenDialogOptions, clipboard } from 'electron';
 import { TestRepository } from './repositories/test.repository';
 import { clickAt, findImageOnScreen } from './functions/robots-test';
 import { ImageEntity } from '@/entities/image.entity';
 import { ImageRepository } from './repositories/image.repository';
+import { ItemService } from './services/item.service';
 const sqlite = require('aa-sqlite');
 const path = require('path');
 // import * as cv from 'opencv4nodejs';
 
-const dbPath =
-  process.env.NODE_ENV === 'development'
-    ? process.env.DATABASE_URL
-    : path.join(__dirname, process.env.DATABASE_URL);
+const dbPath = process.env.NODE_ENV === 'development' ? process.env.DATABASE_URL : path.join(__dirname, process.env.DATABASE_URL);
 
 console.log('🚀 ~ process.env.NODE_ENV:', process.env.NODE_ENV);
 console.log('🚀 ~ dbPath:', dbPath);
@@ -33,6 +25,16 @@ im.handle('getDirPath', async () => {
 im.handle('robotTest', async (_) => {
   // findImageOnScreen();
   // clickAt();
+});
+
+im.handle('compareImage', async (_, itemImage, screenshotImage) => {
+  const itemService = new ItemService();
+  await itemService.compareImage(itemImage, screenshotImage);
+});
+
+im.handle('registerItemService', async (_, name, options, image) => {
+  const itemService = new ItemService();
+  await itemService.registerItem(name, options, image);
 });
 
 im.handle('saveClipboardImage', async () => {

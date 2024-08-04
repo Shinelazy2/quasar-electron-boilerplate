@@ -8,11 +8,13 @@
     <q-btn label="imageRegister" @click="imageRegister()"></q-btn>
     <div id="imageContainer"></div>
     <ImageRegisterModal v-model="openRegisterModal" />
+    <MainPage />
   </q-page>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import MainPage from '@/pages/MainPage.vue'
 import ImageRegisterModal from '@/components/ImageRegisterModal.vue'
 
 // TODO: 설정된 Source -> Target -> 차량번호를 유지, 단속일시를 변경

@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { app, BrowserWindow, nativeTheme, ipcMain } from 'electron';
 import path from 'path';
 import os from 'os';
@@ -6,6 +7,7 @@ import { DataSource } from 'typeorm';
 import { TestEntity } from '@/entities/test.entity';
 import { CommonCodeEntity } from '@/entities/commoncode.entity';
 import { ImageEntity } from '@/entities/image.entity';
+import { ItemEntity } from '@/entities/item.entity';
 export let dataSource: DataSource; // Export the dataSource
 
 // needed in case process is undefined under Linux
@@ -13,25 +15,21 @@ const platform = process.platform || os.platform();
 
 try {
   if (platform === 'win32' && nativeTheme.shouldUseDarkColors === true) {
-    require('fs').unlinkSync(
-      path.join(app.getPath('userData'), 'DevTools Extensions')
-    );
+    require('fs').unlinkSync(path.join(app.getPath('userData'), 'DevTools Extensions'));
   }
 } catch (_) {}
 
 let mainWindow: BrowserWindow | undefined | any;
 
 async function createWindow() {
-  const url =
-    process.env.DATABASE_URL !== undefined ? process.env.DATABASE_URL : 'error';
-  const dbPath =
-    process.env.NODE_ENV === 'development' ? url : path.join(__dirname, url);
+  const url = process.env.DATABASE_URL !== undefined ? process.env.DATABASE_URL : 'error';
+  const dbPath = process.env.NODE_ENV === 'development' ? url : path.join(__dirname, url);
   dataSource = new DataSource({
     type: 'sqlite',
     synchronize: true,
     logging: 'all',
     database: dbPath,
-    entities: [TestEntity, CommonCodeEntity, ImageEntity],
+    entities: [TestEntity, CommonCodeEntity, ImageEntity, ItemEntity],
     // entities: [path.join(__dirname, '../../src/entity/*.entity.{ts,js}')],
     // migrations: ['./migrations/*.js'],
   });

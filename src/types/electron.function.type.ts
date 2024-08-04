@@ -10,4 +10,8 @@ export class ElectronFunctions {
   robotTest = () => ir.invoke('robotTest');
   saveClipboardImage = () => ir.invoke('saveClipboardImage');
   getImages = () => ir.invoke('getImages');
+
+  // item
+  registerItemService = (name: string, options: string[], image: string) => ir.invoke('registerItemService', name, options, image);
+  compareImage = (itemImage: string, screenshotImage: string) => ir.invoke('compareImage', itemImage, screenshotImage);
 }
